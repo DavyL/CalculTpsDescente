@@ -124,8 +124,25 @@ Ce r\'esultat nous assure que nous avons au moins une solution num\'erique, cepe
 \section{R\'esolution avec un changement de variable}
 Nous allons dans cette partie consid\'erer que le comportement de la fonction $y$ est connu en 0 et est de la forme
 \begin{equation}
- y(x)\sim
+ y(x)\sim_0 c.x^{\alpha} \text{, avec } \beta = \begin{cases}
+						    1 - \frac{\alpha}{2} &\text{, si }\alpha < 1\\
+						    \frac{\alpha}{2}	 &\text{, si } 1 < \alpha < 2\\
+						 \end{cases}
 \end{equation}
+Et on pose $x = u^\rho$, avec $\rho = \frac{1}{1 - \beta}$.
+\begin{equation}
+ \frac{dx}{du} = \rho u^{\rho - 1}
+\end{equation}
+On a donc
+\begin{equation}
+ T(y) = \int_0^1f(x)dx = \int_0^1f(u^\rho)\rho u^{\rho - 1} du = \rho \int_0^1f(u^\rho) u^{\rho - 1} du
+\end{equation}
+On applique maintenant la m\'ethode du point milieu et on obtient directement 
+\begin{equation}
+ T(y) \simeq \frac{\rho}{N}\sum_{i=0}^{N-1}f((\frac{2i + 1}{2N})^{\rho})(\frac{2i + 1}{2N})^{\rho - 1}
+\end{equation}
+
+
 
 
 
