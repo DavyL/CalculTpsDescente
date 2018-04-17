@@ -11,7 +11,7 @@
 \newtheorem{theorem}{Theor\`eme}
 \begin{abstract}
 Nous allons ici vous pr\'esenter la math\'ematisation de l'un des sujets du projet. Celui-ci a des applications concr\`etes, notamment dans le milieu de l'a\'eronautique, par exemple
-pour calculer les meilleures trajectoires de descente vers les aéroports. Cependant, la résolution de ce probl\`eme date de bien avant l'a\'eronautique, en 1638, Galil\'ee est le premier \`a s'int\'eresser
+pour calculer les meilleures trajectoires de descente vers les a\'eroports. Cependant, la r\'esolution de ce probl\`eme date de bien avant l'a\'eronautique, en 1638, Galil\'ee est le premier \`a s'int\'eresser
 \`a ce probl\`eme. Jean Bernoulli sera le premier \`a r\'esoudre ce probl\`eme en 1696, des solutions de Newton, Leibnitz et Jacques Bernoulli seront aussi retenues \`a la suite d'un d\'efi lanc\'e
 par Jean Bernoulli. La solution au probl\`eme est appel\'ee courbe de brachistochrone, c'est un arc de cycloïde. Ces \'etudes auront permis de d\'evelopper le calcul diff\'erentiel et variationnel.
 \end{abstract}
@@ -45,7 +45,7 @@ Avec l'expression pr\'ecedente et \ref{integrale} on obtient finalement :
  T(y) = \int_0^1 \frac{\sqrt{1 + \Big(y'(x)\Big)^2}}{\sqrt{2gy}}dx
 \end{equation}
 Cependant l'expression pr\'ecedente pr\'sente des probl\`emes de singularit\'e en 0. En effet, on sait, qu'en 0, on a $y(0) = 0$ donc l'expression \`a int\'egrer  va varier tr\`es rapidement
-\`a proximité de l'origine. Mais aussi, le calcul va d\'ependre de la d\'eriv\'ee de $y$ qui n'est pas suppos\'ee connue. Afin de r\'esoudre cette \'equation, qui n'admet pas forc\'ement de solution
+\`a proximit\'e de l'origine. Mais aussi, le calcul va d\'ependre de la d\'eriv\'ee de $y$ qui n'est pas suppos\'ee connue. Afin de r\'esoudre cette \'equation, qui n'admet pas forc\'ement de solution
 analytique, il faut donc recourir \`a des m\'ethodes num\'eriques. 
 
 \section{M\'ethode de r\'esolution ouverte}
@@ -78,7 +78,7 @@ En notant $T_N(y)$ la valeur de $T(y)$ avec la m\'ethode du point milieu avec un
 Par ailleurs,
 \begin{equation}
 \label{firstpart}
- \int_0^{\frac{1}{N}}f(x)dx = \int_0^{\frac{1}{N}} x^{-\beta} + g(x)dx = \frac{x^{-\beta + 1}}{-\beta + 1} + \int_0^{\frac{1}{N}}g(x)dx = \mathcal{O}(N^{\beta - 1})
+ \int_0^{\frac{1}{N}}f(x)dx = \int_0^{\frac{1}{N}} x^{-\beta} + g(x)dx = \frac{(\frac{1}{N})^{-\beta + 1}}{-\beta + 1} + \int_0^{\frac{1}{N}}g(x)dx = \mathcal{O}(N^{\beta - 1})
 \end{equation}
 On remarque dans l'expression pr\'ecedente qu'il est n\'cessaire d'avoir $\beta \neq 0$ afin de ne pas faire de division par z\'ero.
 Il nous reste donc \`a majorer le second terme, d'apr\`es le cours, la m\'ethode du point milieu est d'ordre $p = 1$ et d'apr\`es le th\'eor\`eme 4, il existe une constante $ C > 0$, telle que,
