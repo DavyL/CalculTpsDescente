@@ -59,15 +59,13 @@ listeDePoint =[]
 for i in range (0, nombreDePoint ):
     xi = i * pas 
     listeDePoint.append(xi) 
-#print (listeDePoint) 
-
-
 
 #fonction = lambda x:1 - x
 
-#integrale est la fonction à intégrer, le 3.9 correspond à la racine carrée de g, avec g = 9.81
+#integrale est la fonction à intégrer
 #Dans le calcul de la dérivée, on divise le pas par deux afin de rendre le calcul de la dérivée plus précis que celui de l'integrale
-integrale = lambda x: sqrt(1 + (deriv(fonction, x, 0.5 * pas))**2)/((3.9)*sqrt(2*(fonction(0) - fonction(x))))
+g = 10
+integrale = lambda x: sqrt(1 + (deriv(fonction, x, 0.5 * pas))**2)/(sqrt(2*(g*fonction(0) - fonction(x))))
 
 #méthode rect à gauche
 somme = 0
