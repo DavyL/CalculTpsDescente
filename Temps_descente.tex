@@ -1,5 +1,5 @@
 \documentclass[a4paper,10pt]{article}
-\usepackage[]{inputenc, amssymb, amsmath, amsthm}
+\usepackage[]{inputenc, amssymb, amsmath, amsthm, graphicx}
 
 %opening
 \title{Calcul d'un temps de descente}
@@ -156,6 +156,57 @@ Comme $0 < \beta < 1$, l'in\'egalit\'e pr\'ecedente est toujours v\'erifi\'ee . 
 \underline{Cas d'un toboggan de type $y(x) = \frac{1}{2}x^{\frac{3}{2}}(5-3x)$}: Dans ce cas on a ( au voisinage de 0 ) $\alpha = \frac{3}{2}$ et $\beta = \frac{3}{4}$, donc la premi\`ere m\'ethode est d'ordre $\frac{1}{4}$ et la seconde est d'ordre 4.
 \newline
 Ainsi, la seconde m\'ethode est bien plus efficace que la premi\`ere, cela s'explique par le fait que le changement de variable permet d'\'eviter la singularit\'e en 0.
+
+
+\newpage
+\section{Application Num\'erique}
+
+\begin{figure}
+  \includegraphics[scale = 0.5]{figures/figure1.pdf}
+  \includegraphics[scale = 0.5]{figures/figure2.pdf}
+\end{figure}
+
+Etude de la fonction $f(x) = 1-x$
+\begin{center}
+	\begin{tabular}{ | l | c | c | c | r| }
+		 \hline
+					& Rect \`a gauche 	& Rect \`a droite 	& Trap\`eze 		& Simpson \\ \hline
+			N = 101 	& 0.588234190031346 	& 0.5596004309853696 	& 0.5739173105083577 	& 0.5429105877244202 \\ \hline
+			N = 501 	& 0.6121548130243415 	& 0.5986303676112116 	& 0.6053925903177766 	& 0.5915569042287318 \\ \hline
+			N = 2001 	& 0.6222128575640632 	& 0.6152980965952546 	& 0.6187554770796588 	& 0.6118405759154913 \\ \hline
+			N = 10001 	& 0.6278537067166106 	& 0.6247228921422507 	& 0.6262882994294302 	& 0.6231962142068161 \\ \hline
+			N = 300001 	& 0.6316129255212698 	& 0.6310366283806264 	& 0.6313247769509484 	& 0.6307602576051508 \\
+		\hline
+	\end{tabular}
+\end{center}
+Etude de la fonction : $f(x) = 1 - \sqrt{x}$
+\begin{center}
+	\begin{tabular}{| l | c | c | c | r |} 
+		 \hline
+					& Rect \`a gauche 	& Rect \`a droite 	& Trap\`eze 		& Simpson 	\\ \hline
+			N = 101 	& 0.4583765896586141 	& 0.42454931810375834 	& 0.4414629538811862 	& 0.4104369376355152 \\ \hline 
+			N = 501 	& 0.4974462300573093 	& 0.4741725456229688 	& 0.485809387840139 	& 0.46570869302794915 \\ \hline 
+			N = 2001 	& 0.5210582577328062 	& 0.5044417511315761 	& 0.5127500044321911 	& 0.4986240922028768 \\ \hline 
+			N = 10001 	& 0.540060714103038 	& 0.5289022990371395 	& 0.5344815065700885 	& 0.5250505889294617 \\ \hline 
+			N = 300001 	& 0.5620827012155685 	& 0.5573062767959174 	& 0.5596944890057428 	& 0.5556663980153529 \\ \hline 
+	\end{tabular}
+\end{center}
+\begin{figure}
+  \includegraphics[scale = 0.2]{figures/figure3.pdf}
+\end{figure}
+Etude de la fonction : $f(x) = 1 - \frac{1}{2}x^{\frac{3}{2}}(5 - 3x)$	
+\begin{center}
+	\begin{tabular}{@{} | l | c | c | c | r |}
+		 \hline
+					& Rect \`a gauche 	& Rect \`a droite 	& Trap\`eze 		& Simpson 	\\ \hline
+			N = 101 	& 0.6489876207693931 	& 0.6030492531124904 	& 0.6260184369409418 	& 0.5834531246438184 \\ \hline 
+			N = 501 	& 0.6994033895987943 	& 0.6694647976069733 	& 0.6844340936028838 	& 0.658521444514206 \\ \hline 
+			N = 2001 	& 0.729422998564128 	& 0.7083021306239633 	& 0.7188625645940457 	& 0.7009068135150682 \\ \hline 
+			N = 10001 	& 0.7534935315374546 	& 0.7393623334170493 	& 0.7464279324772518 	& 0.7344868671634918 \\ \hline 
+			N = 300001 	& 0.7813562431097106 	& 0.7753140748909539 	& 0.7783351590003321 	& 0.7732398139627539 \\ \hline 
+	\end{tabular}
+\end{center}
+
 
 
 \end{document}
