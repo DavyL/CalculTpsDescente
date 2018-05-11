@@ -215,11 +215,11 @@ for k in range(len(fonction)):
         fichierLatex.write("\t\t \\hline\n")   #
         for l in range(len(nombreDePointListe)):
             fichierLatex.write( "\t\t\tN = " + str(nombreDePointListe[l]) 
-                                                            + " & " + str(tempsDescenteListe[l][0])
-                                                            + " & " + str(tempsDescenteListe[l][1])
-                                                            + " & " + str(tempsDescenteListe[l][2])
-                                                            + " & " + str(tempsDescenteListe[l][3])
-                                                            + " & " + str(tempsDescenteListe[l][4])
+                                                            + "\t & " + str(tempsDescenteListe[l][0])
+                                                            + "\t & " + str(tempsDescenteListe[l][1])
+                                                            + "\t & " + str(tempsDescenteListe[l][2])
+                                                            + "\t & " + str(tempsDescenteListe[l][3])
+                                                            + "\t & " + str(tempsDescenteListe[l][4])
                                                             + " \\\\ \\hline \n")
         fichierLatex.write("\t \\end{tabular}\n")
         fichierLatex.write("\\end{center}\n")
