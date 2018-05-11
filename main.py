@@ -57,6 +57,7 @@ else:
 fonction = []
 derive = []
 integrale = []
+rho = []
 
 #Les parties lecture fonction et dérivation sont utilisées uniquement si l'option customest utilisée
 #Elles sont rentrées a la main pour les fonctions demandées
@@ -82,6 +83,12 @@ if(custom):
     from Fonction import fonctionPerso                           #On importe la fonction depuis le fichier crée précedemment
     
     fonction.append( lambda x: fonctionPerso(x))
+
+    print("Afin d'utiliser la méthode du changement de variable, entrez la valeur de rho définie dans le PDF\n")
+    print("Sinon, entrez la valeur 1")
+    rho.append(int(input("rho = ")))
+
+    #Si rho = 1, alors il n'y a pas de changement de variable, donc cela correspond à la méthode du point milieu
 
     assert (abs(fonction(0) - 1) <= 0.01), "Vérifier que la fonction vaut 1 en 0"       #On verifie que la fonction vérifie les conditions demandées   
     assert (abs(fonction(1)) <= 0.01), "Vérifier que la fonction vaut 0 en 1"
@@ -113,6 +120,10 @@ fonction.append( lambda x: 1 - ((x**(3/2))*(5-3*x))/2)
 derive.append( lambda x: -1)
 derive.append( lambda x: -1/(2*sqrt(x)))
 derive.append( lambda x: (15/4)*(-1 * x**(1/2) + x**(3/2)))
+rho.append(2)
+rho.append(4)
+rho.append(4)
+
 #Dans la boucle suivante, on parcourt chaque tableau de fonction défini précedemment
 for k in range(len(fonction)): 
     tempsDescenteListe = []
@@ -145,7 +156,7 @@ for k in range(len(fonction)):
             #on décale de 1 les valeurs dans la somme car i est l'indice dans la liste
             somme = somme + integrale[k] (listeDePoint[i])
         tempsDescente.append(pas * somme)
-        print ("tempsDeDescente avec la méthode des rectangles à gauche=", tempsDescente[-1])
+        print ("Temps de descente avec la méthode des rectangles à gauche=", tempsDescente[-1])
 
         #méthode rect à droite
         somme = 0 
@@ -155,7 +166,7 @@ for k in range(len(fonction)):
             somme = somme + integrale[k] (listeDePoint[i]) 
         tempsDescente.append(pas * somme) 
 
-        print ("tempsDeDescente avec la méthode des rectangles à droite=", tempsDescente[-1])
+        print ("Temps de descente avec la méthode des rectangles à droite=", tempsDescente[-1])
 
         #méthode des trapèzes
         somme = 0 
@@ -164,7 +175,7 @@ for k in range(len(fonction)):
             somme = somme + integrale[k] (listeDePoint[i])
         tempsDescente.append(pas*((integrale[k] (listeDePoint[0]) + integrale[k] (listeDePoint[nombreDePoint - 1])) / 2 + somme))
 
-        print ("tempsDeDescente avec la méthode des trapèzes =", tempsDescente[-1])
+        print ("Temps de descente avec la méthode des trapèzes =", tempsDescente[-1])
         #méthode de Simpson
         if nombreDePoint%2 != 0:
             somme1 = 0
@@ -175,13 +186,24 @@ for k in range(len(fonction)):
                 somme1= somme1 + integrale[k](listeDePoint[2*i])
                 somme2= somme2 + integrale[k](listeDePoint[2*i+1])
             tempsDescente.append((pas / 3) * (integrale[k](listeDePoint[0])+ 2 * somme1 + 4 * somme2 + integrale[k](listeDePoint[nombreDePoint-1]) ))
-            print ("tempsDeDescente avec la méthode de Simpson = ", tempsDescente[-1])
+            print ("Temps de descente avec la méthode de Simpson = ", tempsDescente[-1])
 
         else:
             print("Le nombre de points de la subidivision n'est pas adapté à la méthode de Simpson")
         
+        #Méthode point milieu avec changement de variable
+
+        somme = 0
+        try:
+            for i in range(nombreDePoint):
+                somme += integrale[k]( ((2*i + 1)/(2*nombreDePoint))**rho[k])*( ((2*i+1)/(2*nombreDePoint))**(rho[k] - 1))
+        except ZeroDivisionError:
+            print("La méthode du changement de variable ne peut être appliquée avec la fonction" + str(k) + "et une subdivision avec "+str(nombreDePoint) + "points.")
+            somme = 0
+        tempsDescente.append((rho[k]/nombreDePoint)*somme)
+        print("Temps de descente avec le changement de variable = ", tempsDescente[-1])
+
         tempsDescenteListe.append(tempsDescente)
-        
     ################
     #ECRITURE LATEX#
     ################
@@ -189,7 +211,7 @@ for k in range(len(fonction)):
         fichierLatex = open("tableau"+str(k)+".tex","w")                  #On crée un fichier "tableau.tex" qui contient du code LaTeX (en mode écriture)
               
         fichierLatex.write("\\begin{center}\n")                  #
-        fichierLatex.write("\t \\begin{tabular}{fonction " + str(k) +" |Rect. \`a gauche | Rect. \`a droite | Trap\`eze | Simpson |} \n")               #
+        fichierLatex.write("\t \\begin{tabular}{fonction " + str(k) +" |Rect. \`a gauche | Rect. \`a droite | Trap\`eze | Simpson | Chgmt var. |} \n")               #
         fichierLatex.write("\t\t \\hline\n")   #
         for l in range(len(nombreDePointListe)):
             fichierLatex.write( "\t\t\tN = " + str(nombreDePointListe[l]) 
@@ -197,6 +219,7 @@ for k in range(len(fonction)):
                                                             + " & " + str(tempsDescenteListe[l][1])
                                                             + " & " + str(tempsDescenteListe[l][2])
                                                             + " & " + str(tempsDescenteListe[l][3])
+                                                            + " & " + str(tempsDescenteListe[l][4])
                                                             + " \\\\ \\hline \n")
         fichierLatex.write("\t \\end{tabular}\n")
         fichierLatex.write("\\end{center}\n")
@@ -214,3 +237,13 @@ for k in range(len(fonction)):
         
 #On affiche les figures crées ci-dessus
 plt.show()
+
+
+def changmtVar(tempsDescenteListe, fonct, deriv, rho):
+    integrale = lambda x: sqrt(1 + (deriv(x))**2)/(sqrt(2*10*fonct(x)))
+    rho = 2
+    for i in range(nombreDePoint):
+        t += integrale[k]( ((2*i + 1)/(2*nombreDePoint))**rho)*( ((2*i+1)/(2*nombreDePoint))**(rho - 1))
+    tempsDescente.append((rho/nombreDePoint)*t)
+
+
