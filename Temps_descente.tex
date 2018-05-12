@@ -149,11 +149,11 @@ La m\'ethode du changementde variable est plus efficace si
 \end{equation}
 Comme $0 < \beta < 1$, l'in\'egalit\'e pr\'ecedente est toujours v\'erifi\'ee . Nous allons maintenant comparer les deux m\'ethodes sur des plusieurs exemples.
 \newline
-\underline{Cas d'un toboggan de type $y(x) = x$}: Dans ce cas on a $\alpha = 1$ et $\beta = \frac{1}{2}$, donc la premi\`ere m\'ethode est d'ordre $\frac{1}{2}$ et la seconde est d'ordre 2. 
+\underline{Cas d'un toboggan de type $y(x) = x$}: Dans ce cas on a $\alpha = 1$ et $\beta = \frac{1}{2}$, donc la premi\`ere m\'ethode est d'ordre $\frac{1}{2}$ et la seconde est d'ordre 1. 
 \newline
-\underline{Cas d'un toboggan de type $y(x) = \sqrt{x}$}: Dans ce cas on a $\alpha = \frac{1}{2}$ et $\beta = \frac{3}{4}$, donc la premi\`ere m\'ethode est d'ordre $\frac{1}{4}$ et la seconde est d'ordre 4.
+\underline{Cas d'un toboggan de type $y(x) = \sqrt{x}$}: Dans ce cas on a $\alpha = \frac{1}{2}$ et $\beta = \frac{3}{4}$, donc la premi\`ere m\'ethode est d'ordre $\frac{1}{4}$ et la seconde est d'ordre 3.
 \newline
-\underline{Cas d'un toboggan de type $y(x) = \frac{1}{2}x^{\frac{3}{2}}(5-3x)$}: Dans ce cas on a ( au voisinage de 0 ) $\alpha = \frac{3}{2}$ et $\beta = \frac{3}{4}$, donc la premi\`ere m\'ethode est d'ordre $\frac{1}{4}$ et la seconde est d'ordre 4.
+\underline{Cas d'un toboggan de type $y(x) = \frac{1}{2}x^{\frac{3}{2}}(5-3x)$}: Dans ce cas on a ( au voisinage de 0 ) $\alpha = \frac{3}{2}$ et $\beta = \frac{3}{4}$, donc la premi\`ere m\'ethode est d'ordre $\frac{1}{4}$ et la seconde est d'ordre 3.
 \newline
 Ainsi, la seconde m\'ethode est bien plus efficace que la premi\`ere, cela s'explique par le fait que le changement de variable permet d'\'eviter la singularit\'e en 0.
 
@@ -205,6 +205,18 @@ Etude de la fonction : $f(x) = 1 - \frac{1}{2}x^{\frac{3}{2}}(5 - 3x)$
 			N = 10001 	& 0.7534935315374546 	& 0.7393623334170493 	& 0.7464279324772518 	& 0.7344868671634918 \\ \hline 
 			N = 300001 	& 0.7813562431097106 	& 0.7753140748909539 	& 0.7783351590003321 	& 0.7732398139627539 \\ \hline 
 	\end{tabular}
+\end{center}
+
+\begin{center}
+	\begin{tabular}{|l|c|c|c|c|r|}
+		\hline
+					 & Rect. \`a gauche 	 & Rect. \`a droite 	 & Trap\`eze 		 & Simpson 		 & Chgmt var. 	     \\ \hline	
+			N = 101	 	 & 0.588234190031346	 & 0.5596004309853696	 & 0.5739173105083577	 & 0.5429105877244202	 & 0.632455532033676 \\ \hline 
+			N = 501	 	 & 0.6121548130243415	 & 0.5986303676112116	 & 0.6053925903177766	 & 0.5915569042287318	 & 0.6324555320336555 \\ \hline 
+			N = 2001	 & 0.6222128575640632	 & 0.6152980965952546	 & 0.6187554770796588	 & 0.6118405759154913	 & 0.6324555320337623 \\ \hline 
+			N = 10001	 & 0.6278537067166106	 & 0.6247228921422507	 & 0.6262882994294302	 & 0.6231962142068161	 & 0.6324555320339558 \\ \hline 
+			N = 300001	 & 0.6316129255212698	 & 0.6310366283806264	 & 0.6313247769509484	 & 0.6307602576051508	 & 0.6324555320266917 \\ \hline 
+	 \end{tabular}
 \end{center}
 
 

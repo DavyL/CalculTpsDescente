@@ -211,8 +211,9 @@ for k in range(len(fonction)):
         fichierLatex = open("tableau"+str(k)+".tex","w")                  #On crée un fichier "tableau.tex" qui contient du code LaTeX (en mode écriture)
               
         fichierLatex.write("\\begin{center}\n")                  #
-        fichierLatex.write("\t \\begin{tabular}{fonction " + str(k) +" |Rect. \`a gauche | Rect. \`a droite | Trap\`eze | Simpson | Chgmt var. |} \n")               #
+        fichierLatex.write("\t \\begin{tabular}{ |l | c | c | c | c | r| }\n")               #
         fichierLatex.write("\t\t \\hline\n")   #
+        fichierLatex.write("\t\t\t\t & Rect. \`a gauche \t& Rect. \`a droite \t& Trap\`eze \t& Simpson \t& Chgmt var. \\\\ \\hline\n") 
         for l in range(len(nombreDePointListe)):
             fichierLatex.write( "\t\t\tN = " + str(nombreDePointListe[l]) 
                                                             + "\t & " + str(tempsDescenteListe[l][0])
