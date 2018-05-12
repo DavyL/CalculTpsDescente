@@ -1,6 +1,10 @@
 #fichier principal projet Calcul Scientifique
 #Python 3.5
 
+#Un PDF décrivant certaines parties de ce programme, notamment la mise en équation du problème ainsi qu'un description de l'efficacité de certaines méthodes
+#est disponible à l'adresse suivante :
+# http://github.com/DavyL/CalculTpsDescente/blob/master/Temps_descente.pdf 
+
 ##########
 #EXEMPLES#
 ##########
@@ -67,13 +71,13 @@ rho = []
 ##################
 #Le programme demande à l'utilisateur d'entrer une fonction au bon format, par ex. : "1- x";"1 -sqrt(x)"
 if(custom):
-    print("La fonction doit être formattée pour python 3.5, la bibliothèque math est importée\n")
+    print("La fonction doit être formattée pour python 3.5, la bibliothèque math est importée")
     fonctionLue = input("fonction qui à x associe: ")
     def lireFonction():
         fichier = open("Fonction.py","w")                  #On crée un fichier "Fonction.py" qui contient du code Python (en mode écriture)
               
         fichier.write("from math import *\n")              #On importe la bibliothèque math
-        fichier.write("def fonction(x): \n")               #On définit la fonction
+        fichier.write("def fonctionPerso(x): \n")               #On définit la fonction
         fichier.write("\t return " + fonctionLue + "\n")   #La fonction renvoie la fonction lue
                                       
         fichier.close()                                    #On ferme le fichier
@@ -84,14 +88,14 @@ if(custom):
     
     fonction.append( lambda x: fonctionPerso(x))
 
-    print("Afin d'utiliser la méthode du changement de variable, entrez la valeur de rho définie dans le PDF\n")
+    print("Afin d'utiliser la méthode du changement de variable, entrez la valeur de rho définie dans le PDF")
     print("Sinon, entrez la valeur 1")
     rho.append(int(input("rho = ")))
 
     #Si rho = 1, alors il n'y a pas de changement de variable, donc cela correspond à la méthode du point milieu
 
-    assert (abs(fonction(0) - 1) <= 0.01), "Vérifier que la fonction vaut 1 en 0"       #On verifie que la fonction vérifie les conditions demandées   
-    assert (abs(fonction(1)) <= 0.01), "Vérifier que la fonction vaut 0 en 1"
+    assert (abs(fonction[0](0) - 1) <= 0.01), "Vérifier que la fonction vaut 1 en 0"       #On verifie que la fonction vérifie les conditions demandées   
+    assert (abs(fonction[0](1)) <= 0.01), "Vérifier que la fonction vaut 0 en 1"
 
     #Les fonctions étudiées sont décroissantes de 0 à 1 donc la dérivée à gauche n'est pas nécéssairement définie
     #On va donc dériver à droite en 0 et de même, on va dériver en gauche en 1
@@ -111,7 +115,7 @@ if(custom):
         else:                                                                     
             return ( derivGauche(f, x, h) +  derivDroite(f, x, h))/2
     
-    deriv.append( lambda x: derivCalc( fonction[0], x, 0.5 * pas))
+    derive.append( lambda x: derivCalc( fonction[0], x, 0.5 * pas))
 
 
 fonction.append( lambda x: 1 - x)
@@ -133,6 +137,7 @@ for k in range(len(fonction)):
 
     #integrale est la fonction à intégrer
     #Dans le calcul de la dérivée, on divise le pas par deux afin de rendre le calcul de la dérivée plus précis que celui de l'integrale
+    #On définit la constante de "pesanteur" comme suit
     g = 10
 
     for nombreDePoint in nombreDePointListe:   
@@ -220,7 +225,7 @@ for k in range(len(fonction)):
                                                             + "\t & " + str(tempsDescenteListe[l][1])
                                                             + "\t & " + str(tempsDescenteListe[l][2])
                                                             + "\t & " + str(tempsDescenteListe[l][3])
-                                                            + "\t & " + str(tempsDescenteListe[l][4])
+                                                            + "\t & " + str(tempsDescenteListe[l][4])  
                                                             + " \\\\ \\hline \n")
         fichierLatex.write("\t \\end{tabular}\n")
         fichierLatex.write("\\end{center}\n")

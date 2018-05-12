@@ -1,9 +1,13 @@
 \documentclass[a4paper,10pt]{article}
-\usepackage[]{inputenc, amssymb, amsmath, amsthm, graphicx}
+\usepackage[]{inputenc, amssymb, amsmath, amsthm, graphicx, hyperref}
+
 
 %opening
 \title{Calcul d'un temps de descente}
-\author{DAVY L\'eo, CARPENTIER Florian}
+\author{DAVY L\'eo, CARPENTIER Florian \\
+\small Universit\'e Paul Sabatier - Toulouse 3 \\
+\small L2 Parcours Sp\'ecial Math\'ematiques}
+
 
 \begin{document}
 
@@ -161,61 +165,75 @@ Ainsi, la seconde m\'ethode est bien plus efficace que la premi\`ere, cela s'exp
 \newpage
 \section{Application Num\'erique}
 
-\begin{figure}
-  \includegraphics[scale = 0.5]{figures/figure1.pdf}
-  \includegraphics[scale = 0.5]{figures/figure2.pdf}
-\end{figure}
+Nous allons dans un premier temps \'etudier la fonction $x \mapsto x$. Par un calcul on peut obtenir la valeur exacte de $T(x \mapsto x) = \frac{2}{\sqrt{10}} \approx 0.63245553203$.
+On peut voir ci-dessous les valeurs obtenues avec les m\'ethodes les plus classiques. On peut y observer que la m\'ethode des rectangles \'a gauche est sensiblement plus efficace car elle contient 
+un rectangle supplémentaire \'a proximit\'e de 1. La m\'ethode du trap\'eze est une m\'ethode hybride des deux premi\`ères, est tr\'es proches de leurs valeurs. Cependant, la vitesse de convergence 
+n'est pas satisfaisante.
 
-Etude de la fonction $f(x) = 1-x$
 \begin{center}
 	\begin{tabular}{ | l | c | c | c | r| }
 		 \hline
-					& Rect \`a gauche 	& Rect \`a droite 	& Trap\`eze 		& Simpson \\ \hline
-			N = 101 	& 0.588234190031346 	& 0.5596004309853696 	& 0.5739173105083577 	& 0.5429105877244202 \\ \hline
-			N = 501 	& 0.6121548130243415 	& 0.5986303676112116 	& 0.6053925903177766 	& 0.5915569042287318 \\ \hline
-			N = 2001 	& 0.6222128575640632 	& 0.6152980965952546 	& 0.6187554770796588 	& 0.6118405759154913 \\ \hline
-			N = 10001 	& 0.6278537067166106 	& 0.6247228921422507 	& 0.6262882994294302 	& 0.6231962142068161 \\ \hline
-			N = 300001 	& 0.6316129255212698 	& 0.6310366283806264 	& 0.6313247769509484 	& 0.6307602576051508 \\
+					& Rect \`a gauche 	& Rect \`a droite 	& Trap\`eze 		\\ \hline
+			N = 101 	& 0.588234190031346 	& 0.5596004309853696 	& 0.5739173105083577 	\\ \hline
+			N = 501 	& 0.6121548130243415 	& 0.5986303676112116 	& 0.6053925903177766 	\\ \hline
+			N = 2001 	& 0.6222128575640632 	& 0.6152980965952546 	& 0.6187554770796588 	\\ \hline
+			N = 10001 	& 0.6278537067166106 	& 0.6247228921422507 	& 0.6262882994294302 	\\ \hline
+			N = 300001 	& 0.6316129255212698 	& 0.6310366283806264 	& 0.6313247769509484 	\\
 		\hline
 	\end{tabular}
 \end{center}
-Etude de la fonction : $f(x) = 1 - \sqrt{x}$
-\begin{center}
-	\begin{tabular}{| l | c | c | c | r |} 
-		 \hline
-					& Rect \`a gauche 	& Rect \`a droite 	& Trap\`eze 		& Simpson 	\\ \hline
-			N = 101 	& 0.4583765896586141 	& 0.42454931810375834 	& 0.4414629538811862 	& 0.4104369376355152 \\ \hline 
-			N = 501 	& 0.4974462300573093 	& 0.4741725456229688 	& 0.485809387840139 	& 0.46570869302794915 \\ \hline 
-			N = 2001 	& 0.5210582577328062 	& 0.5044417511315761 	& 0.5127500044321911 	& 0.4986240922028768 \\ \hline 
-			N = 10001 	& 0.540060714103038 	& 0.5289022990371395 	& 0.5344815065700885 	& 0.5250505889294617 \\ \hline 
-			N = 300001 	& 0.5620827012155685 	& 0.5573062767959174 	& 0.5596944890057428 	& 0.5556663980153529 \\ \hline 
-	\end{tabular}
-\end{center}
-\begin{figure}
-  \includegraphics[scale = 0.2]{figures/figure3.pdf}
-\end{figure}
-Etude de la fonction : $f(x) = 1 - \frac{1}{2}x^{\frac{3}{2}}(5 - 3x)$	
-\begin{center}
-	\begin{tabular}{@{} | l | c | c | c | r |}
-		 \hline
-					& Rect \`a gauche 	& Rect \`a droite 	& Trap\`eze 		& Simpson 	\\ \hline
-			N = 101 	& 0.6489876207693931 	& 0.6030492531124904 	& 0.6260184369409418 	& 0.5834531246438184 \\ \hline 
-			N = 501 	& 0.6994033895987943 	& 0.6694647976069733 	& 0.6844340936028838 	& 0.658521444514206 \\ \hline 
-			N = 2001 	& 0.729422998564128 	& 0.7083021306239633 	& 0.7188625645940457 	& 0.7009068135150682 \\ \hline 
-			N = 10001 	& 0.7534935315374546 	& 0.7393623334170493 	& 0.7464279324772518 	& 0.7344868671634918 \\ \hline 
-			N = 300001 	& 0.7813562431097106 	& 0.7753140748909539 	& 0.7783351590003321 	& 0.7732398139627539 \\ \hline 
-	\end{tabular}
-\end{center}
+Dans le tableau suivant on peut observer les valeurs avec la m\'ethode de Simpson et avec le changement de variable $\rho = 2$. On remarque que les valeurs obtenues sont bien plus proches de de la 
+valeur attendue, afin de comparer l'efficacit\'e des deux m\'ethodes, dans les deux derni\`eres colonnes sont affich\'ees les valeurs des rapports des temps approch\'es et temps exact.
+Il est clair que la m\'ethode du changement de variable est tr\'es efficace. On remarque \'egalement que la valeur la plus proche est celle obtenue avec N = 100, elle est d'ailleurs quasiment exacte,
+On peut sugg\'erer que le fait que la perte de pr\'ecision avec l'augmentation du nombre de points \'evalu\'es provient du fait qu\'a chaque op\'eration sur des nombres \'a virgule flottante 
+r\'ealis\'ee par l'ordianteur, il y a une perte d'information sur les nombres \'evalu\'es, ainsi ces pertes tr\'es locales peuvent \^etre observ\'ees avec un nombre de points suffisament important.
 
 \begin{center}
-	\begin{tabular}{|l|c|c|c|c|r|}
-		\hline
-					 & Rect. \`a gauche 	 & Rect. \`a droite 	 & Trap\`eze 		 & Simpson 		 & Chgmt var. 	     \\ \hline	
-			N = 101	 	 & 0.588234190031346	 & 0.5596004309853696	 & 0.5739173105083577	 & 0.5429105877244202	 & 0.632455532033676 \\ \hline 
-			N = 501	 	 & 0.6121548130243415	 & 0.5986303676112116	 & 0.6053925903177766	 & 0.5915569042287318	 & 0.6324555320336555 \\ \hline 
-			N = 2001	 & 0.6222128575640632	 & 0.6152980965952546	 & 0.6187554770796588	 & 0.6118405759154913	 & 0.6324555320337623 \\ \hline 
-			N = 10001	 & 0.6278537067166106	 & 0.6247228921422507	 & 0.6262882994294302	 & 0.6231962142068161	 & 0.6324555320339558 \\ \hline 
-			N = 300001	 & 0.6316129255212698	 & 0.6310366283806264	 & 0.6313247769509484	 & 0.6307602576051508	 & 0.6324555320266917 \\ \hline 
+	 \begin{tabular}{|l|c|c|c|c|r|}
+		 \hline
+					& Simpson 		 & Chgmt var. 		 & Simpson/$\frac{2}{\sqrt{10}}$ & Chgmt var./$\frac{2}{\sqrt{10}}$\\ \hline
+			N = 101		& 0.5429105877244202	 & 0.632455532033676	 & 0.08584170115149097	 & 0.10000000000000002 \\ \hline 
+			N = 501	 	& 0.5915569042287318	 & 0.6324555320336555	 & 0.09353335914804418	 & 0.09999999999999677 \\ \hline 
+			N = 2001	& 0.6118405759154913	 & 0.6324555320337623	 & 0.09674048924010567	 & 0.10000000000001365 \\ \hline 
+			N = 10001	& 0.6231962142068161	 & 0.6324555320339558	 & 0.09853597330438613	 & 0.10000000000004425 \\ \hline 
+			N = 300001	& 0.6307602576051508	 & 0.6324555320266917	 & 0.099731953577341	 & 0.0999999999988957 \\ \hline 
+	 \end{tabular}
+\end{center}
+
+
+\newpage
+Les valeurs obtenues avec les m\'ethodes des rectangles ne sont pas affich\'ees mais comme toutes les valeurs obtenues dans ce document, elles peuvent \^etre reproduites et \'egalement export\'ees
+au format \LaTeX depuis : \url{ github.com/DavyL/CalculTpsDescente/blob/master/main.py }
+\\
+Etude de la fonction : $f(x) = \sqrt{x}$
+\begin{center}
+	 \begin{tabular}{|l|c|c|c|c|r|}
+		 \hline
+					& Trap\`eze 		 & Simpson 		 & Chgmt var. \\ \hline
+			N = 101	 	& 0.4414629538811862	 & 0.4104369376355152	 & 0.5785154925953274 \\ \hline 
+			N = 501	 	& 0.485809387840139	 & 0.46570869302794915	 & 0.5785217623125455 \\ \hline 
+			N = 2001	& 0.5127500044321911	 & 0.4986240922028768	 & 0.5785220112658342 \\ \hline 
+			N = 10001	& 0.5344815065700885	 & 0.5250505889294617	 & 0.5785220272494653 \\ \hline 
+			N = 300001	& 0.5596944890057428	 & 0.5556663980153529	 & 0.5785220279112407 \\ \hline 
+	 \end{tabular}
+\end{center}
+
+\begin{figure}
+  \includegraphics[scale = 0.5]{figures/figure2.pdf}
+  \includegraphics[scale = 0.5]{figures/figure3.pdf}
+  \caption{$x \mapsto \sqrt(x)$ et $x \mapsto \frac{1}{2}x^{\frac{3}{2}}(5 - 3x)$}
+\end{figure}
+Etude de la fonction : $f(x) = \frac{1}{2}x^{\frac{3}{2}}(5 - 3x)$	
+On remarque ici que certaines valeurs ne sont pas d\'efinies avec le changement de variable, En effet, le programme \`a partir d'un certain rang, consid\`ere r\'ealiser une division par z\'ero. 
+\begin{center}
+	 \begin{tabular}{|l|c|c|c|c|r|}
+		 \hline
+					& Trap\`eze 		 & Simpson 		 & Chgmt var. \\ \hline
+			N = 101	 	& 0.6260184369409418	 & 0.5834531246438184	 & 0.8021436648059572 \\ \hline 
+			N = 501	 	& 0.6844340936028838	 & 0.658521444514206	 & non d\'efinie \\ \hline 
+			N = 2001	& 0.7188625645940457	 & 0.7009068135150682	 & non d\'efinie \\ \hline 
+			N = 10001	& 0.7464279324772518	 & 0.7344868671634918	 & non d\'efinie \\ \hline 
+			N = 300001	& 0.7783351590003321	 & 0.7732398139627539	 & non d\'efinie \\ \hline 
 	 \end{tabular}
 \end{center}
 
