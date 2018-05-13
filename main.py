@@ -181,6 +181,8 @@ for k in range(len(fonction)):
         tempsDescente.append(pas*((integrale[k] (listeDePoint[0]) + integrale[k] (listeDePoint[nombreDePoint - 1])) / 2 + somme))
 
         print ("Temps de descente avec la méthode des trapèzes =", tempsDescente[-1])
+        
+        
         #méthode de Simpson
         if nombreDePoint%2 != 0:
             somme1 = 0
@@ -243,13 +245,4 @@ for k in range(len(fonction)):
         
 #On affiche les figures crées ci-dessus
 plt.show()
-
-
-def changmtVar(tempsDescenteListe, fonct, deriv, rho):
-    integrale = lambda x: sqrt(1 + (deriv(x))**2)/(sqrt(2*10*fonct(x)))
-    rho = 2
-    for i in range(nombreDePoint):
-        t += integrale[k]( ((2*i + 1)/(2*nombreDePoint))**rho)*( ((2*i+1)/(2*nombreDePoint))**(rho - 1))
-    tempsDescente.append((rho/nombreDePoint)*t)
-
 
