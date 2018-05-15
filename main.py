@@ -32,14 +32,19 @@ else:
 
 #On note:
 #nombreDeSubdivision : le nombre de subidivision, noté N dans l'énoncé
-#fonction : la fonction du toboggan
 #pas : la taille d'un pas, noté delta_x dans l'énoncé
 #listeDePoints : liste des x_i avec la notation de l'énoncé
 #tempsDescenteListe : tableau contenant pour chaque fonction, le calcul du temps de descente en fonction du nombre de points de la subdivision
+
+#####################
+#LECTURE OPTIONS CMD#
+#####################
+
 latex = 0
 nombreDePointListe = []
 tempsDescenteListe = []
 tempsDescente = []
+
 if( "latex" in args):
     latex = 1
     nombreDePointListe = [101, 501, 2001, 10001, 300001]
@@ -56,14 +61,18 @@ else:
             if arg == "size":
                 flag = 1
 
-#On crée une liste de fonctions, de derivées et de fonctions correspondant aux integrales resp, noté integrale
-
+#On crée des tableaux qui seront des tableaux contenant des fonctions
+#fonction contient les fonctions "y" décrivant le toboggan
 fonction = []
+#derive contient les fonctions "y'" décrivant la pente du toboggan
 derive = []
+#integrale est la fonction définie dans le pdf à integrer afin d'obtenir le temps de descente
 integrale = []
+#rho est la fonction utilisée pour la méthode du changement de variable
+#Si rho = 1, la méthode du changement de variable est équivalente à la méthode du point milieu
 rho = []
 
-#Les parties lecture fonction et dérivation sont utilisées uniquement si l'option customest utilisée
+#Les parties lecture fonction et dérivation sont utilisées uniquement si l'option custom est utilisée
 #Elles sont rentrées a la main pour les fonctions demandées
 
 ##################
@@ -89,7 +98,7 @@ if(custom):
     fonction.append( lambda x: fonctionPerso(x))
 
     print("Afin d'utiliser la méthode du changement de variable, entrez la valeur de rho définie dans le PDF")
-    print("Sinon, entrez la valeur 1")
+    print("Sinon, entrez la valeur 1 afin d'utiliser une méthode du point milieu classique")
     rho.append(int(input("rho = ")))
 
     #Si rho = 1, alors il n'y a pas de changement de variable, donc cela correspond à la méthode du point milieu
@@ -118,6 +127,10 @@ if(custom):
     derive.append( lambda x: derivCalc( fonction[0], x, 0.5 * pas))
 
 
+###########################
+#ATTRIBUTION DES FONCTIONS#
+###########################
+
 fonction.append( lambda x: 1 - x)
 fonction.append( lambda x: 1 - sqrt(x))
 fonction.append( lambda x: 1 - ((x**(3/2))*(5-3*x))/2)
@@ -127,6 +140,10 @@ derive.append( lambda x: (15/4)*(-1 * x**(1/2) + x**(3/2)))
 rho.append(2)
 rho.append(4)
 rho.append(4)
+
+##############################
+#CALCUL DES TEMPS DE DESCENTE#
+##############################
 
 #Dans la boucle suivante, on parcourt chaque tableau de fonction défini précedemment
 for k in range(len(fonction)): 
@@ -205,20 +222,27 @@ for k in range(len(fonction)):
             for i in range(nombreDePoint):
                 somme += integrale[k]( ((2*i + 1)/(2*nombreDePoint))**rho[k])*( ((2*i+1)/(2*nombreDePoint))**(rho[k] - 1))
         except ZeroDivisionError:
-            print("La méthode du changement de variable ne peut être appliquée avec la fonction" + str(k) + "et une subdivision avec "+str(nombreDePoint) + "points.")
+            print("La méthode du changement de variable ne peut être appliquée avec la fonction" + str(k) + " et une subdivision avec "+str(nombreDePoint) + " points.")
+            print("Il ne devrait pas y avoir d'erreur avec un nombre de points inférieur.")
             somme = 0
         tempsDescente.append((rho[k]/nombreDePoint)*somme)
         print("Temps de descente avec le changement de variable = ", tempsDescente[-1])
 
         tempsDescenteListe.append(tempsDescente)
+    
+    
     ################
     #ECRITURE LATEX#
     ################
+    
+    #La partie suivante est utilisée si l'option latex est précisée à l'execution du programme
+    #Elle permet d'écrire dans un fichier .tex les valeurs obtenues lors du calcul de temps de descente pour chaque fonction
+    
     if(latex):
         fichierLatex = open("tableau"+str(k)+".tex","w")                  #On crée un fichier "tableau.tex" qui contient du code LaTeX (en mode écriture)
               
-        fichierLatex.write("\\begin{center}\n")                  #
-        fichierLatex.write("\t \\begin{tabular}{ |l | c | c | c | c | r| }\n")               #
+        fichierLatex.write("\\begin{center}\n")                             
+        fichierLatex.write("\t \\begin{tabular}{ |l | c | c | c | c | r| }\n")               
         fichierLatex.write("\t\t \\hline\n")   #
         fichierLatex.write("\t\t\t\t & Rect. \`a gauche \t& Rect. \`a droite \t& Trap\`eze \t& Simpson \t& Chgmt var. \\\\ \\hline\n") 
         for l in range(len(nombreDePointListe)):
