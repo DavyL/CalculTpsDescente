@@ -142,7 +142,7 @@ for k in range(len(fonction)):
 
     for nombreDePoint in nombreDePointListe:   
         print(nombreDePoint, nombreDePointListe)
-        pas = 1 / (nombreDePoint - 1) 
+        pas = 1 / (nombreDePoint) 
         listeDePoint =[]
         tempsDescente = []
             
@@ -150,7 +150,7 @@ for k in range(len(fonction)):
         #On étudie donc les fonction sur "l'ouvert" (0, 1) sur lequel on suppose les fonction définies
 
         for i in range (0, nombreDePoint ):
-            xi = i*pas + 1/nombreDePoint
+            xi = i*pas + 1/(2*nombreDePoint)
             listeDePoint.append(xi) 
         
         #méthode rect à gauche

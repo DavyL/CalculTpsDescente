@@ -16,12 +16,12 @@
 \begin{abstract}
 Nous allons ici vous pr\'esenter la math\'ematisation de l'un des sujets du projet. Celui-ci a des applications concr\`etes, notamment dans le milieu de l'a\'eronautique, par exemple
 pour calculer les meilleures trajectoires de descente vers les a\'eroports. Cependant, la r\'esolution de ce probl\`eme date de bien avant l'a\'eronautique, en 1638, Galil\'ee est le premier \`a s'int\'eresser
-\`a ce probl\`eme. Jean Bernoulli sera le premier \`a r\'esoudre ce probl\`eme en 1696, des solutions de Newton, Leibnitz et Jacques Bernoulli seront aussi retenues \`a la suite d'un d\'efi lanc\'e
+\`a ce probl\`eme. Jean Bernoulli sera le premier \`a le r\'esoudre. en 1696, des solutions de Newton, Leibnitz et Jacques Bernoulli seront aussi retenues \`a la suite d'un d\'efi lanc\'e
 par Jean Bernoulli. La solution au probl\`eme est appel\'ee courbe de brachistochrone, c'est un arc de cycloïde. Ces \'etudes auront permis de d\'evelopper le calcul diff\'erentiel et variationnel.
 \end{abstract}
 \section{\'Etude m\'ecanique du probl\`eme}
 Nous allons maintenant \'etudier une approche m\'ecanique du probl\`eme. On peut l'assimiler \`a une bille l\^ach\'ee dans un toboggan avec certains param\`etres, le toboggan d\'emarre en $(0,0)$
-et s'arrête en $(1,1)$, (sans pertes de g\'en\'eralit\'es). On a donc $y : [0,1]\longrightarrow \mathbb{R}$ avec $y(0) = 0, y(1) = 1$ et $y$ continue. La bille est \'egalement l\^ach\'ee sans vitesse initiale.
+et s'arr\^ete en $(1,1)$, (sans pertes de g\'en\'eralit\'es). On a donc $y : [0,1]\longrightarrow \mathbb{R}$ avec $y(0) = 0, y(1) = 1$ et $y$ continue. La bille est \'egalement l\^ach\'ee sans vitesse initiale.
 On l'assimile \`a un point de masse m et on n\'egligera les frottements. L'abscisse curviligne de la bille sera not\'ee $S$.
 \newline
 On applique \`a ce syst\`eme un PFD et on remarque que la r\'eaction du toboggan ne travaille pas. On a ainsi :
@@ -48,7 +48,7 @@ Avec l'expression pr\'ecedente et \ref{integrale} on obtient finalement :
 \begin{equation}
  T(y) = \int_0^1 \frac{\sqrt{1 + \Big(y'(x)\Big)^2}}{\sqrt{2gy}}dx
 \end{equation}
-Cependant l'expression pr\'ecedente pr\'sente des probl\`emes de singularit\'e en 0. En effet, on sait, qu'en 0, on a $y(0) = 0$ donc l'expression \`a int\'egrer  va varier tr\`es rapidement
+Cependant l'expression pr\'ecedente pr\'esente des probl\`emes de singularit\'e en 0. En effet, on sait, qu'en 0, on a $y(0) = 0$ donc l'expression \`a int\'egrer  va varier tr\`es rapidement
 \`a proximit\'e de l'origine. Mais aussi, le calcul va d\'ependre de la d\'eriv\'ee de $y$ qui n'est pas suppos\'ee connue. Afin de r\'esoudre cette \'equation, qui n'admet pas forc\'ement de solution
 analytique, il faut donc recourir \`a des m\'ethodes num\'eriques. 
 
@@ -121,9 +121,10 @@ finalement :
 									     &= \mathcal{O}(N^{\beta - 1}) 
 \end{align}
 \end{equation}
- En combinant \ref{firstpart} et l'expression pr\'ecedente on obtient bien que la m\'ethode est d'ordre $1- \beta$. Le th\'eor\`eme est donc bien d\'emontr\'e.
+ En combinant \ref{firstpart} et l'expression pr\'ecedente on obtient que la m\'ethode est d'ordre $1- \beta$. Le th\'eor\`eme est donc bien d\'emontr\'e.
 \end{proof}
-Ce r\'esultat nous assure que nous avons au moins une solution num\'erique, cependant , cette m\'ethode n'\'etant pas tr\`es efficace, nous allons essayer dans la suite de trouver une m\'ethode plus efficace.
+Ce r\'esultat nous assure que nous avons au moins une solution num\'erique, cependant , cette m\'ethode n'\'etant pas tr\`es efficace, nous allons poursuivre pour tenter de
+trouver une m\'ethode plus efficace.
 
 \section{R\'esolution avec un changement de variable}
 Nous allons dans cette partie consid\'erer que le comportement de la fonction $y$ est connu en 0 et est de la forme
@@ -166,8 +167,8 @@ Ainsi, la seconde m\'ethode est bien plus efficace que la premi\`ere, cela s'exp
 \section{Application Num\'erique}
 
 Nous allons dans un premier temps \'etudier la fonction $x \mapsto x$. Par un calcul on peut obtenir la valeur exacte de $T(x \mapsto x) = \frac{2}{\sqrt{10}} \approx 0.63245553203$.
-On peut voir ci-dessous les valeurs obtenues avec les m\'ethodes les plus classiques. On peut y observer que la m\'ethode des rectangles \'a gauche est sensiblement plus efficace car elle contient 
-un rectangle supplémentaire \'a proximit\'e de 1. La m\'ethode du trap\'eze est une m\'ethode hybride des deux premi\`ères, est tr\'es proches de leurs valeurs. Cependant, la vitesse de convergence 
+On peut voir ci-dessous les valeurs obtenues avec les m\'ethodes les plus classiques. On peut y observer que la m\'ethode des rectangles \`a gauche est sensiblement plus efficace car elle contient 
+un rectangle suppl\'ementaire \`a proximit\'e de 1. La m\'ethode du trap\'eze est une m\'ethode hybride des deux premi\`eres qui est tr\`es proches de leurs valeurs. Cependant, la vitesse de convergence 
 n'est pas satisfaisante.
 
 \begin{center}
@@ -182,21 +183,22 @@ n'est pas satisfaisante.
 		\hline
 	\end{tabular}
 \end{center}
-Dans le tableau suivant on peut observer les valeurs avec la m\'ethode de Simpson et avec le changement de variable $\rho = 2$. On remarque que les valeurs obtenues sont bien plus proches de de la 
+Dans le tableau suivant on peut observer les valeurs avec la m\'ethode de Simpson et avec le changement de variable $\rho = 2$. On remarque que les valeurs obtenues sont bien plus proches de la 
 valeur attendue, afin de comparer l'efficacit\'e des deux m\'ethodes, dans les deux derni\`eres colonnes sont affich\'ees les valeurs des rapports des temps approch\'es et temps exact.
 Il est clair que la m\'ethode du changement de variable est tr\'es efficace. On remarque \'egalement que la valeur la plus proche est celle obtenue avec N = 100, elle est d'ailleurs quasiment exacte,
-On peut sugg\'erer que le fait que la perte de pr\'ecision avec l'augmentation du nombre de points \'evalu\'es provient du fait qu\'a chaque op\'eration sur des nombres \'a virgule flottante 
-r\'ealis\'ee par l'ordianteur, il y a une perte d'information sur les nombres \'evalu\'es, ainsi ces pertes tr\'es locales peuvent \^etre observ\'ees avec un nombre de points suffisament important.
+On peut sugg\'erer que le fait de la perte de pr\'ecision avec l'augmentation du nombre de points \'evalu\'es provient du fait qu'\`a chaque op\'eration sur des nombres \'a virgule flottante 
+r\'ealis\'ee par l'ordianteur. Il y a ainsi une perte d'informations sur les nombres \'evalu\'es. Apr\`es suffisament d'it\'erations, ces pertes tr\'es locales peuvent \^etre observ\'ees de mani\`ere 
+relativement significative.
 
 \begin{center}
 	 \begin{tabular}{|l|c|c|c|c|r|}
 		 \hline
 					& Simpson 		 & Chgmt var. 		 & Simpson/$\frac{2}{\sqrt{10}}$ & Chgmt var./$\frac{2}{\sqrt{10}}$\\ \hline
-			N = 101		& 0.5429105877244202	 & 0.632455532033676	 & 0.08584170115149097	 & 0.10000000000000002 \\ \hline 
-			N = 501	 	& 0.5915569042287318	 & 0.6324555320336555	 & 0.09353335914804418	 & 0.09999999999999677 \\ \hline 
-			N = 2001	& 0.6118405759154913	 & 0.6324555320337623	 & 0.09674048924010567	 & 0.10000000000001365 \\ \hline 
-			N = 10001	& 0.6231962142068161	 & 0.6324555320339558	 & 0.09853597330438613	 & 0.10000000000004425 \\ \hline 
-			N = 300001	& 0.6307602576051508	 & 0.6324555320266917	 & 0.099731953577341	 & 0.0999999999988957 \\ \hline 
+			N = 101		& 0.5429105877244202	 & 0.632455532033676	 & 0.8584170115149097	 & 1.0000000000000002 \\ \hline 
+			N = 501	 	& 0.5915569042287318	 & 0.6324555320336555	 & 0.9353335914804418	 & 0.9999999999999677 \\ \hline 
+			N = 2001	& 0.6118405759154913	 & 0.6324555320337623	 & 0.9674048924010567	 & 1.0000000000001365 \\ \hline 
+			N = 10001	& 0.6231962142068161	 & 0.6324555320339558	 & 0.9853597330438613	 & 1.0000000000004425 \\ \hline 
+			N = 300001	& 0.6307602576051508	 & 0.6324555320266917	 & 0.99731953577341	 & 0.999999999988957 \\ \hline 
 	 \end{tabular}
 \end{center}
 
